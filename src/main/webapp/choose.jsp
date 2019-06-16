@@ -136,7 +136,7 @@
 <script>
 
 
-    var currentNameId;
+    let currentNameId;
 
     $(document).ready(function () {
         var userId = '<%=((UserDTO)request.getAttribute("user")).getId()%>';
