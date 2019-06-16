@@ -1,5 +1,7 @@
 server:
   port: 7000
+  servlet:
+    context-path: /baby_name
 logging:
   config: classpath:logback_boot.xml
 

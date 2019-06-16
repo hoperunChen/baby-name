@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://rm-2ze9szf444429o0v9.mysql.rds.aliyuncs.com:3306/baby_name?useUnicode=true&zeroDateTimeBehavior=round&allowMultiQueries=true
+    username: bname
+    password: Luckyrui123
+    # 下面为连接池的补充设置，应用到上面所有数据源中
+    # 初始化大小，最小，最大
+    initialSize: 30
+    minIdle: 30
+    maxActive: 200
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true

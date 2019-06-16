@@ -9,7 +9,7 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/toastr.css">
+    <link rel="stylesheet" href="../toastr.css">
     <style>
 
 
@@ -132,7 +132,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-<script src="/toastr.min.js"></script>
+<script src="../toastr.min.js"></script>
 <script>
 
 
@@ -153,7 +153,7 @@
             cache: false,
             type: 'POST',
             data: {},
-            url: '/choose/next_name',
+            url: '../choose/next_name',
             success: function (data) {
                 if (data.success) {
                     var bizData = data.data;
@@ -178,7 +178,7 @@
             cache: false,
             type: 'POST',
             data: {'nameId': currentNameId},
-            url: '/choose/like',
+            url: '../choose/like',
             success: function (data) {
                 if (data.success) {
                     nextName();
@@ -198,7 +198,7 @@
             cache: false,
             type: 'POST',
             data: {'nameId': currentNameId},
-            url: '/choose/dislike',
+            url: '../choose/dislike',
             success: function (data) {
                 if (data.success) {
                     toastr.success("不喜欢成功,显示下一个!");

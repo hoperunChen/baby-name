@@ -68,7 +68,7 @@
         </div>
     </div>
     <div class="row content">
-        <form id="loginForm" class="form-inline" action="/pages/do_login">
+        <form id="loginForm" class="form-inline" action="do_login">
             <div class="col show-name">
                 <div class="form-group">
                     <label for="phone">手机号:</label>
