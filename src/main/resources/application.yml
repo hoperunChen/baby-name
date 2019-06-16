@@ -1,0 +1,27 @@
+server:
+  port: 7000
+logging:
+  config: classpath:logback_boot.xml
+
+spring:
+  application:
+    name: material-purchasing-supplier
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  mvc:
+      view:
+        prefix: /
+        suffix: .jsp
+  profiles:
+    active: local
+mybatis:
+  config-locations: classpath*:mybatis/mybatis-config.xml
+  mapper-locations: classpath*:mybatis/mapper/*.xml
+  type-aliases-package: cn.uctimes.file.entity
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  supportMethodsArguments: true
+  params: count=countSql
+

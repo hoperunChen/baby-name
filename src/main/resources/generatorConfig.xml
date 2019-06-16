@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 配置文件路径 -->
+    <properties resource="generatorConfig.properties"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+            <property name="javaFileEncoding" value="UTF-8"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="${model.package}" targetProject="${target.project}">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="javaExampleTargetPackage" value="${model.package}"/>
+            <property name="javaExampleTargetProject" value="${target.project}"/>
+            <property name="rootClass" value="cn.uctimes.commons.base.BaseEntity"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="${xml.package}" targetProject="${xml.target.project}">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="${mapper.package}"
+                             targetProject="${target.project}">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--&lt;!&ndash; 计量单位表 &ndash;&gt;-->
+        <!--<table tableName="t_meas_unit" domainObjectName="MeasUnit" mapperName="MeasUnitMapper"-->
+               <!--enableCountByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" type="post" identity="true"/>-->
+        <!--</table>-->
+        <!--&lt;!&ndash; 字典表 &ndash;&gt;-->
+        <!--<table tableName="t_dict" domainObjectName="Dict" mapperName="DictMapper" enableCountByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" type="post" identity="true"/>-->
+            <!--<columnOverride column="group_name" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+            <!--<columnOverride column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+            <!--<columnOverride column="descr" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--</table>-->
+        <table tableName="t_names" domainObjectName="Names" mapperName="NamesMapper" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="mysql" type="post" identity="true"/>
+            <columnOverride column="descr" javaType="java.lang.string" jdbcType="varchar"/>
+        </table>
+        <table tableName="t_like_names" domainObjectName="LikeNames" mapperName="LikeNamesMapper" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="mysql" type="post" identity="true"/>
+        </table>
+        <table tableName="t_user" domainObjectName="User" mapperName="UserMapper" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="mysql" type="post" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

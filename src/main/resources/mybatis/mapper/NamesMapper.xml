@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.uctimes.luckyrui.babyname.dao.NamesMapper">
+    <resultMap id="BaseResultMap" type="cn.uctimes.luckyrui.babyname.entity.Names">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="like_count" jdbcType="INTEGER" property="likeCount"/>
+        <result column="descr" jdbcType="VARCHAR" property="descr"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, like_count, descr
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_names
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_names
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="cn.uctimes.luckyrui.babyname.entity.Names">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_names (name, like_count, descr
+        )
+        values (#{name,jdbcType=VARCHAR}, #{likeCount,jdbcType=INTEGER}, #{descr,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="cn.uctimes.luckyrui.babyname.entity.Names">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_names
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="likeCount != null">
+                like_count,
+            </if>
+            <if test="descr != null">
+                descr,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="likeCount != null">
+                #{likeCount,jdbcType=INTEGER},
+            </if>
+            <if test="descr != null">
+                #{descr,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.uctimes.luckyrui.babyname.entity.Names">
+        update t_names
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="likeCount != null">
+                like_count = #{likeCount,jdbcType=INTEGER},
+            </if>
+            <if test="descr != null">
+                descr = #{descr,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.uctimes.luckyrui.babyname.entity.Names">
+    update t_names
+    set name = #{name,jdbcType=VARCHAR},
+      like_count = #{likeCount,jdbcType=INTEGER},
+      descr = #{descr,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+    <select id="selectNextByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT n.* FROM t_names n WHERE n.id =
+            (
+              SELECT u.SCHEDULE FROM t_user u WHERE u.id=#{userId}
+            )
+    </select>
+
+    <select id="getMaxId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select max(id) from t_names
+    </select>
+
+    <select id="selectNextNameById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_names where id > #{id,jdbcType=INTEGER}
+        order by id limit 1
+    </select>
+
+    <update id="updateLikeCount" parameterType="java.lang.Integer">
+        update t_names
+        set like_count = like_count + 1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+</mapper>
