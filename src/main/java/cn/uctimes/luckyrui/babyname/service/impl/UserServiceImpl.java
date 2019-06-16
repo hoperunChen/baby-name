@@ -39,8 +39,7 @@ public class UserServiceImpl implements UserService {
 			user.setName(phone);
 			user.setPhone(phone);
 			user.setSchedule(1);
-			int id = userMapper.insertSelective(user);
-			user.setId(id);
+			userMapper.insertSelective(user);
 		}
 		userDTO = BeanConvertor.convertTo(user, userDTO);
 		return ResultInfo.success(userDTO);
